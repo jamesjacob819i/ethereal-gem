@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="min-h-screen bg-gray-50">
+    <DemoBanner />
     <Navbar />
     <main>
       <router-view />
@@ -14,6 +15,7 @@ import { onMounted } from 'vue'
 import Navbar from './components/layout/Navbar.vue'
 import Footer from './components/layout/Footer.vue'
 import CartSidebar from './components/cart/CartSidebar.vue'
+import DemoBanner from './components/layout/DemoBanner.vue'
 import { useAuthStore } from './stores/auth'
 import { useProductStore } from './stores/products'
 

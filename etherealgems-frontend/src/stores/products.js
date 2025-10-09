@@ -47,13 +47,28 @@ export const useProductStore = defineStore('products', {
       // If already loading, don't start another request
       if (this.loading) return
 
+      // Check if we're in demo mode (production without backend)
+      const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true'
+      
+      if (isDemoMode) {
+        // Use mock data immediately in demo mode
+        this.loading = true
+        setTimeout(() => {
+          this.products = this.getMockProductsSync()
+          this.loading = false
+          this.initialized = true
+          this.error = 'Demo mode - showing sample products'
+        }, 500) // Small delay to show loading state
+        return
+      }
+
       this.loading = true
       this.error = null
       
       try {
-        // Use Promise.race for timeout
+        // Use Promise.race for timeout - reduced to 3 seconds
         const timeoutPromise = new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('Request timeout')), 8000)
+          setTimeout(() => reject(new Error('Request timeout')), 3000)
         )
         
         const fetchPromise = fetch(`${API_BASE_URL}/products`, {
@@ -76,7 +91,7 @@ export const useProductStore = defineStore('products', {
         console.error('Fetch products error:', error)
         // Quick fallback to mock data
         this.products = this.getMockProductsSync()
-        this.error = 'Using demo data - server response slow'
+        this.error = 'Showing demo products - backend unavailable'
       } finally {
         this.loading = false
         this.initialized = true
@@ -156,6 +171,30 @@ export const useProductStore = defineStore('products', {
           onSale: true,
           rating: 4.9,
           reviewCount: 12
+        },
+        {
+          _id: 'mock-5',
+          name: 'Silver Chain Necklace',
+          description: 'Delicate silver chain perfect for everyday wear.',
+          price: 899,
+          category: 'Necklaces',
+          images: [{ url: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80' }],
+          inStock: true,
+          featured: false,
+          rating: 4.4,
+          reviewCount: 28
+        },
+        {
+          _id: 'mock-6',
+          name: 'Rose Gold Ring',
+          description: 'Elegant rose gold ring with contemporary design.',
+          price: 5999,
+          category: 'Rings',
+          images: [{ url: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80' }],
+          inStock: true,
+          featured: false,
+          rating: 4.3,
+          reviewCount: 10
         }
       ]
     },
