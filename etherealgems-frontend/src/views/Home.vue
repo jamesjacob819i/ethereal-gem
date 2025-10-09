@@ -1,5 +1,10 @@
 <template>
   <div class="bg-white">
+    <!-- Deployment Status -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <DeploymentStatus />
+    </div>
+    
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-r from-primary-50 to-purple-50 overflow-hidden">
       <div class="max-w-7xl mx-auto">
@@ -210,6 +215,7 @@ import { useRouter } from 'vue-router'
 import { useProductStore } from '../stores/products'
 import ProductCard from '../components/product/ProductCard.vue'
 import LoadingSpinner from '../components/layout/LoadingSpinner.vue'
+import DeploymentStatus from '../components/layout/DeploymentStatus.vue'
 
 const router = useRouter()
 const productStore = useProductStore()
