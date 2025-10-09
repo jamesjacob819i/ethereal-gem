@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:production": "NODE_ENV=production vite build",
+    "build:test": "vite build --mode test"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",

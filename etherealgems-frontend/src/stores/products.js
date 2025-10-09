@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-const API_BASE_URL = 'http://localhost:5000/api'
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api`
 
 // Cache for products to avoid unnecessary refetches
 let productsCache = null
