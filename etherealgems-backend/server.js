@@ -104,6 +104,8 @@ app.get('/', (req, res) => {
     success: true,
     message: 'Welcome to EtherealGems API',
     version: '1.0.0',
+    environment: process.env.NODE_ENV || 'development',
+    timestamp: new Date().toISOString(),
     documentation: '/api/docs',
     endpoints: {
       auth: '/api/auth',
@@ -112,6 +114,17 @@ app.get('/', (req, res) => {
       cart: '/api/cart',
       admin: '/api/admin'
     }
+  });
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    database: global.dbConnected ? 'connected' : 'disconnected'
   });
 });
 
