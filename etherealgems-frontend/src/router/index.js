@@ -43,6 +43,11 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact
+  },
+  {
+    // Catch-all route for SPA - redirect unknown routes to home
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
 ]
 
