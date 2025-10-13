@@ -20,8 +20,9 @@ exports.protect = async (req, res, next) => {
     }
 
     try {
-      // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      // Verify token - with fallback secret for production deployment
+      const jwtSecret = process.env.JWT_SECRET || '5fbd2e72846d88b44583bda538436c2af1e6028dad1b1f965129cce43e930dccff45dbb9ee6a4f872a74d2630c77a5bf09d88defa09e727f030b3b55c7642aa6';
+      const decoded = jwt.verify(token, jwtSecret);
       
       // Get user from token
       req.user = await User.findById(decoded.id);
@@ -80,7 +81,8 @@ exports.optionalAuth = async (req, res, next) => {
 
     if (token) {
       try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const jwtSecret = process.env.JWT_SECRET || '5fbd2e72846d88b44583bda538436c2af1e6028dad1b1f965129cce43e930dccff45dbb9ee6a4f872a74d2630c77a5bf09d88defa09e727f030b3b55c7642aa6';
+        const decoded = jwt.verify(token, jwtSecret);
         req.user = await User.findById(decoded.id);
       } catch (error) {
         // Token is invalid, but we continue without user

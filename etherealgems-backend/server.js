@@ -58,7 +58,7 @@ app.use(cors({
     if (!origin) return callback(null, true);
     
     const allowedOrigins = [
-      process.env.FRONTEND_URL,
+      process.env.FRONTEND_URL || 'https://ethereal-gem-do1f-y73mcpt9r-james-projects-8ea40965.vercel.app',
       'http://localhost:5173',
       'http://localhost:5174',
       'http://localhost:5175',

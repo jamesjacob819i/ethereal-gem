@@ -2,7 +2,10 @@ const jwt = require('jsonwebtoken');
 
 // Generate JWT token
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  // Fallback JWT secret for production deployment (Render free tier limitation)
+  const jwtSecret = process.env.JWT_SECRET || '5fbd2e72846d88b44583bda538436c2af1e6028dad1b1f965129cce43e930dccff45dbb9ee6a4f872a74d2630c77a5bf09d88defa09e727f030b3b55c7642aa6';
+  
+  return jwt.sign({ id }, jwtSecret, {
     expiresIn: process.env.JWT_EXPIRE || '7d'
   });
 };
