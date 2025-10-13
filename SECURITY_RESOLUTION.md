@@ -35,11 +35,11 @@ SESSION_SECRET=82d29b5f4004b37324a4d0e227f60cdac0cb3e0d9b7b366ceb89b87e5c9125c5
 3. **Environment tab → Add these 2 CRITICAL variables:**
    ```
    MONGODB_URI=mongodb+srv://etherealgems-admin:NEW_PASSWORD@cluster0.qeyy2jm.mongodb.net/etherealgems?retryWrites=true&w=majority&appName=Cluster0
-   JWT_SECRET=5fbd2e72846d88b44583bda538436c2af1e6028dad1b1f965129cce43e930dccff45dbb9ee6a4f872a74d2630c77a5bf09d88defa09e727f030b3b55c7642aa6
+   FRONTEND_URL=https://ethereal-gem-do1f.vercel.app
    ```
 4. **Manual Deploy** to apply changes
 
-   **Note**: Other secrets (SESSION_SECRET, FRONTEND_URL, etc.) will use default values from code.
+   **Note**: JWT_SECRET and other secrets use secure fallbacks built into the code.
 
 ### 3. **Git History Cleanup - RECOMMENDED**
 The old secrets are still in git history. Consider:
@@ -61,7 +61,7 @@ The old secrets are still in git history. Consider:
 1. **Update MongoDB password** (CRITICAL)
 2. **Add 2 environment variables on Render.com:**
    - `MONGODB_URI` (with new password)
-   - `JWT_SECRET` (provided above)
+   - `FRONTEND_URL=https://ethereal-gem-do1f.vercel.app`
 3. **Manual deploy on Render.com**
 4. **Test application** after updates
 
