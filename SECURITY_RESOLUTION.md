@@ -19,7 +19,7 @@ SESSION_SECRET=82d29b5f4004b37324a4d0e227f60cdac0cb3e0d9b7b366ceb89b87e5c9125c5
 
 ---
 
-## 🚨 **CRITICAL ACTIONS REQUIRED**
+## 🚨 **CRITICAL ACTIONS REQUIRED - BACKEND DOWN**
 
 ### 1. **MongoDB Atlas - IMMEDIATE**
 1. **Log in to MongoDB Atlas**: https://cloud.mongodb.com
@@ -29,7 +29,9 @@ SESSION_SECRET=82d29b5f4004b37324a4d0e227f60cdac0cb3e0d9b7b366ceb89b87e5c9125c5
    - Local `.env` file
    - Render.com environment variables
 
-### 2. **Render.com Deployment - UPDATE NOW** (Free Tier - 2 Variables Only)
+### 2. **Render.com Deployment - URGENT** (Backend is currently down/sleeping)
+**Issue**: Backend is timing out - needs environment variables and redeploy
+
 1. **Go to Render.com dashboard**: https://dashboard.render.com
 2. **Select your `etherealgems-backend` service**
 3. **Environment tab → Add these 2 CRITICAL variables:**
@@ -37,9 +39,11 @@ SESSION_SECRET=82d29b5f4004b37324a4d0e227f60cdac0cb3e0d9b7b366ceb89b87e5c9125c5
    MONGODB_URI=mongodb+srv://etherealgems-admin:NEW_PASSWORD@cluster0.qeyy2jm.mongodb.net/etherealgems?retryWrites=true&w=majority&appName=Cluster0
    FRONTEND_URL=https://ethereal-gem-do1f.vercel.app
    ```
-4. **Manual Deploy** to apply changes
+4. **Deploy tab → Click "Manual Deploy"**
+5. **Wait 3-5 minutes for deployment**
+6. **Visit health check**: https://etherealgems-backend.onrender.com/health
 
-   **Note**: JWT_SECRET and other secrets use secure fallbacks built into the code.
+   **Note**: Free tier services sleep after 15 minutes of inactivity.
 
 ### 3. **Git History Cleanup - RECOMMENDED**
 The old secrets are still in git history. Consider:
