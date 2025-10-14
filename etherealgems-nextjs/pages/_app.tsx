@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <StoreProvider>
-      <div className={inter.className}>
+      <div className={`${inter.className} bg-white min-h-screen`}>
         <Component {...pageProps} />
       </div>
     </StoreProvider>

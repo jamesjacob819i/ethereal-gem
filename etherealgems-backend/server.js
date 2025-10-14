@@ -58,17 +58,20 @@ app.use(cors({
     if (!origin) return callback(null, true);
     
     const allowedOrigins = [
-      process.env.FRONTEND_URL || 'https://ethereal-gem-do1f.vercel.app',
+      process.env.FRONTEND_URL || 'https://etherealgems-frontend.onrender.com',
+      'http://localhost:3000', // Next.js default port
       'http://localhost:5173',
       'http://localhost:5174',
       'http://localhost:5175',
+      'https://etherealgems-frontend.onrender.com',
+      'https://ethereal-gem-do1f.vercel.app',
       'https://ethereal-gem-do1f-1rgm924bw-james-projects-8ea40965.vercel.app',
       'https://ethereal-gem-do1f-y73mcpt9r-james-projects-8ea40965.vercel.app',
-      'https://ethereal-gem-do1f.vercel.app'
     ];
     
-    // Check if origin matches allowed origins or Vercel preview URLs
+    // Check if origin matches allowed origins, Render URLs, or Vercel preview URLs
     if (allowedOrigins.includes(origin) || 
+        (origin && origin.includes('etherealgems') && origin.includes('onrender.com')) ||
         (origin && origin.includes('ethereal-gem') && origin.includes('vercel.app'))) {
       return callback(null, true);
     }
@@ -152,10 +155,7 @@ app.use(errorHandler);
 // Database connection
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/etherealgems', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/etherealgems');
     
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     global.dbConnected = true;

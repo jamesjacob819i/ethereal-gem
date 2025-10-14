@@ -10,14 +10,20 @@ services:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 5000
+        value: 10000
       - key: MONGODB_URI
-        sync: false
+        value: mongodb+srv://etherealgems-admin:LY4gGZxOzniqlSaf@cluster0.qeyy2jm.mongodb.net/etherealgems?retryWrites=true&w=majority&appName=Cluster0
       - key: JWT_SECRET
-        sync: false
+        value: b217bdc6b9f9aea91bd10b6c71f7d641500438bbd2cb1fdf744fa0a2ee608afac67ecad33af73e390c6f79ff2fc12e7dfd3db5265e52b8f162c7fe2a352cf840
+      - key: SESSION_SECRET
+        value: 06f22650a384f79822f43bc4966b3f3d03f2b718bd88c7dcde2553054ea18a0c
       - key: FRONTEND_URL
-        sync: false
+        value: https://etherealgems-frontend.onrender.com
       - key: ADMIN_EMAIL
         value: admin@etherealgems.com
       - key: ADMIN_PASSWORD
-        sync: false
+        value: admin123456
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: etherealgems-frontend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://etherealgems-backend.onrender.com
+      - key: NEXT_PUBLIC_APP_TITLE
+        value: EtherealGems
+      - key: NEXT_PUBLIC_DEMO_MODE
+        value: false

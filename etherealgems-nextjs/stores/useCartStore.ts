@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { useEffect, useState } from 'react'
 
 interface CartItem {
   _id: string
@@ -84,7 +85,27 @@ export const useCartStore = create<CartStore>()((
       }
     }),
     {
-      name: 'cart-storage'
+      name: 'cart-storage',
+      partialize: (state) => ({ items: state.items }),
     }
   )
 ))
+
+// Hook to safely use cart store with SSR
+export const useCartStoreSSR = () => {
+  const [isHydrated, setIsHydrated] = useState(false)
+  const store = useCartStore()
+
+  useEffect(() => {
+    // Trigger hydration after component mounts
+    useCartStore.persist.rehydrate()
+    setIsHydrated(true)
+  }, [])
+
+  return {
+    ...store,
+    isHydrated,
+    getTotalItems: () => isHydrated ? store.getTotalItems() : 0,
+    getTotalPrice: () => isHydrated ? store.getTotalPrice() : 0,
+  }
+}

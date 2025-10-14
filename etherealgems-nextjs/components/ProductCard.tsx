@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useCartStore } from '@/stores/useCartStore'
+import dynamic from 'next/dynamic'
+import { useCartStoreSSR } from '@/stores/useCartStore'
+import { formatPriceSimple } from '@/utils/formatPrice'
 
 interface Product {
   _id: string
@@ -18,7 +20,12 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { addToCart } = useCartStore()
+  const { addToCart } = useCartStoreSSR()
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const handleAddToCart = () => {
     addToCart({
@@ -54,7 +61,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-primary-600">
-            ₹{product.price.toLocaleString()}
+            {isClient ? `₹${formatPriceSimple(product.price)}` : `₹${product.price}`}
           </span>
           
           <button
