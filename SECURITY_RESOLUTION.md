@@ -19,31 +19,34 @@ SESSION_SECRET=82d29b5f4004b37324a4d0e227f60cdac0cb3e0d9b7b366ceb89b87e5c9125c5
 
 ---
 
-## 🚨 **CRITICAL ACTIONS REQUIRED - BACKEND DOWN**
+## � **CURRENT STATUS - BACKEND PARTIALLY WORKING**
 
-### 1. **MongoDB Atlas - IMMEDIATE**
+**✅ Backend Service**: Running (responds to health checks)
+**❌ API Endpoints**: Returning 502 errors (likely database connection issues)
+**❌ CORS**: Still blocking frontend requests
+
+### **IMMEDIATE ACTIONS NEEDED**
+
+### 1. **MongoDB Atlas - CRITICAL**
 1. **Log in to MongoDB Atlas**: https://cloud.mongodb.com
 2. **Go to Database Access**
 3. **Change password for `etherealgems-admin` user**
-4. **Update connection string** in both:
-   - Local `.env` file
-   - Render.com environment variables
+4. **Copy the NEW connection string**
 
-### 2. **Render.com Deployment - URGENT** (Backend is currently down/sleeping)
-**Issue**: Backend is timing out - needs environment variables and redeploy
+### 2. **Render.com Environment Variables - URGENT**
+**Current Issue**: Environment variables not properly set
 
 1. **Go to Render.com dashboard**: https://dashboard.render.com
 2. **Select your `etherealgems-backend` service**
-3. **Environment tab → Add these 2 CRITICAL variables:**
+3. **Environment tab → REPLACE ALL with these 2 variables:**
    ```
    MONGODB_URI=mongodb+srv://etherealgems-admin:NEW_PASSWORD@cluster0.qeyy2jm.mongodb.net/etherealgems?retryWrites=true&w=majority&appName=Cluster0
    FRONTEND_URL=https://ethereal-gem-do1f.vercel.app
    ```
-4. **Deploy tab → Click "Manual Deploy"**
-5. **Wait 3-5 minutes for deployment**
-6. **Visit health check**: https://etherealgems-backend.onrender.com/health
-
-   **Note**: Free tier services sleep after 15 minutes of inactivity.
+4. **Click "Save"**
+5. **Deploy tab → Click "Manual Deploy"**
+6. **Wait 3-5 minutes for deployment**
+7. **Test**: Visit https://etherealgems-backend.onrender.com/api/products
 
 ### 3. **Git History Cleanup - RECOMMENDED**
 The old secrets are still in git history. Consider:
@@ -61,13 +64,10 @@ The old secrets are still in git history. Consider:
 
 ---
 
-## 📋 **Next Steps** (Optimized for Render Free Tier)
-1. **Update MongoDB password** (CRITICAL)
-2. **Add 2 environment variables on Render.com:**
-   - `MONGODB_URI` (with new password)
-   - `FRONTEND_URL=https://ethereal-gem-do1f.vercel.app`
-3. **Manual deploy on Render.com**
-4. **Test application** after updates
+## 📋 **Next Steps** (Backend is Running but Needs Database Fix)
+1. **Update MongoDB password** (CRITICAL - causing 502 errors)
+2. **Set environment variables on Render.com** (must include both MONGODB_URI and FRONTEND_URL)
+3. **Manual deploy on Render.com** (to apply new variables)
+4. **Test APIs**: https://etherealgems-backend.onrender.com/api/products should return product data
 
-**Security Level**: � **SECURE** (All critical secrets rotated, fallbacks in place)
-**Risk Level**: � **LOW** (Old secrets in git history, but all rotated and secured)
+**Current Status**: 🟡 **Backend Running** + 🔴 **Database Connection Issues** = 🟠 **Needs Environment Fix**

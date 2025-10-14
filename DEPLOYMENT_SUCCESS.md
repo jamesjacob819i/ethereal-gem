@@ -10,9 +10,9 @@
 
 **Frontend Environment Variables (Vercel):**
 ```
-VITE_API_URL=https://etherealgems-backend.onrender.com
-VITE_APP_TITLE=EtherealGems
-VITE_DEMO_MODE=false
+NEXT_PUBLIC_API_URL=https://etherealgems-backend.onrender.com
+NEXT_PUBLIC_APP_TITLE=EtherealGems
+NEXT_PUBLIC_DEMO_MODE=false
 ```
 
 **Backend Environment Variables (Render):**
@@ -28,7 +28,7 @@ ADMIN_PASSWORD=admin123456
 
 ### 🚀 What's Working
 
-- ✅ **Frontend**: Deployed on Vercel with optimized Vite build
+- ✅ **Frontend**: Deployed on Vercel with optimized Next.js build
 - ✅ **Backend**: Live on Render.com with Express.js API
 - ✅ **Database**: MongoDB Atlas with 8 jewelry products + 3 users
 - ✅ **Authentication**: JWT-based login system
@@ -83,11 +83,11 @@ Ready to add:
 ### 🛠️ Technical Stack
 
 **Frontend:**
-- Vue 3 (Composition API)
-- Vite build tool
+- Next.js 14 with React 18
+- TypeScript
 - Tailwind CSS
-- Pinia state management
-- Vue Router
+- Zustand state management
+- File-based routing
 
 **Backend:**
 - Node.js + Express.js

@@ -4,15 +4,16 @@ A stunning, full-stack jewelry e-commerce website built with modern technologies
 
 ## 🌟 Features
 
-### Frontend (Vue.js)
+### Frontend (Next.js)
 - **Modern UI/UX**: Elegant design with Tailwind CSS and custom purple theme
 - **Responsive Design**: Mobile-first approach with smooth animations
 - **Product Catalog**: Grid/list view with advanced filtering and search
-- **Shopping Cart**: Real-time cart management with Pinia state management
+- **Shopping Cart**: Real-time cart management with Zustand state management
 - **User Authentication**: JWT-based login/register system
 - **Product Details**: Comprehensive product pages with image galleries
 - **Checkout Flow**: Complete checkout process with payment integration ready
 - **Pages**: Home, Shop, Product Details, Cart, Checkout, About, Contact
+- **Static Generation**: Optimized static export for fast loading
 
 ### Backend (Node.js + Express)
 - **RESTful API**: Well-structured API endpoints
@@ -32,11 +33,11 @@ A stunning, full-stack jewelry e-commerce website built with modern technologies
 ## 🚀 Tech Stack
 
 ### Frontend
-- **Framework**: Vue 3 with Composition API
-- **Build Tool**: Vite
-- **State Management**: Pinia
-- **Routing**: Vue Router
+- **Framework**: Next.js 14 with React 18
+- **Language**: TypeScript
+- **State Management**: Zustand
 - **Styling**: Tailwind CSS
+- **Build Tool**: Next.js built-in
 - **Fonts**: Poppins & Inter (Google Fonts)
 
 ### Backend
@@ -53,18 +54,13 @@ A stunning, full-stack jewelry e-commerce website built with modern technologies
 
 ```
 ethereal gem/
-├── etherealgems-frontend/          # Vue.js Frontend
-│   ├── src/
-│   │   ├── components/             # Reusable Vue components
-│   │   │   ├── cart/              # Cart-related components
-│   │   │   ├── layout/            # Layout components (Navbar, Footer)
-│   │   │   └── product/           # Product-related components
-│   │   ├── views/                 # Page components
-│   │   ├── stores/                # Pinia state management
-│   │   ├── router/                # Vue Router configuration
-│   │   └── assets/                # Static assets
-│   ├── public/                    # Public assets
-│   └── package.json               # Frontend dependencies
+├── etherealgems-nextjs/            # Next.js Frontend
+│   ├── components/                 # Reusable React components
+│   ├── pages/                      # Next.js pages (file-based routing)
+│   ├── stores/                     # Zustand state management
+│   ├── styles/                     # Global styles
+│   ├── package.json               # Frontend dependencies
+│   └── tsconfig.json              # TypeScript configuration
 │
 └── etherealgems-backend/           # Node.js Backend
     ├── controllers/               # Route controllers
@@ -116,7 +112,7 @@ npm run dev
 ### 3. Frontend Setup
 ```bash
 # Navigate to frontend directory (open new terminal)
-cd etherealgems-frontend
+cd etherealgems-nextjs
 
 # Install dependencies
 npm install
@@ -126,7 +122,7 @@ npm run dev
 ```
 
 ### 4. Access the Application
-- **Frontend**: http://localhost:5173
+- **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:5000
 - **API Documentation**: http://localhost:5000 (shows available endpoints)
 
@@ -192,8 +188,8 @@ npm run dev
 The platform is structured for Razorpay UPI integration:
 
 ### Frontend Integration
-```javascript
-// Payment process structure (in Checkout.vue)
+```typescript
+// Payment process structure (in checkout page)
 const processPayment = async () => {
   // 1. Create order on backend
   // 2. Initialize Razorpay
@@ -297,8 +293,9 @@ RAZORPAY_KEY_SECRET=your_razorpay_secret
 - **Controllers**: Handle business logic
 - **Models**: Define data structure and validation
 - **Middleware**: Handle authentication and validation
-- **Stores**: Manage frontend state
-- **Components**: Reusable UI elements
+- **Stores**: Manage frontend state with Zustand
+- **Components**: Reusable React components
+- **Pages**: Next.js file-based routing
 
 ## 📊 Features for Enhancement
 
@@ -323,14 +320,16 @@ RAZORPAY_KEY_SECRET=your_razorpay_secret
 This project demonstrates:
 - Full-stack JavaScript development
 - RESTful API design and implementation
-- Modern frontend frameworks (Vue 3)
-- State management (Pinia)
+- Modern frontend frameworks (Next.js 14 with React 18)
+- State management (Zustand)
+- TypeScript development
 - Database design and modeling
 - Authentication and authorization
 - Payment gateway integration
 - Responsive web design
 - Security best practices
 - Deployment strategies
+- Static site generation
 
 ## 📝 License
 
