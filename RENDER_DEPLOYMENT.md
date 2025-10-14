@@ -80,6 +80,20 @@ If you get CORS errors, update the backend CORS configuration to include your ex
 
 ## 🛠️ Troubleshooting
 
+### TypeScript Build Issues
+If you get "TypeScript packages not installed" error:
+1. **Ensure package.json has TypeScript dependencies:**
+   ```json
+   "devDependencies": {
+     "typescript": "^5.0.0",
+     "@types/node": "^20.0.0",
+     "@types/react": "^18.2.0",
+     "@types/react-dom": "^18.2.0"
+   }
+   ```
+2. **Commit and push changes to GitHub**
+3. **Trigger manual redeploy in Render**
+
 ### Database Issues
 - If MongoDB connection fails, check the MONGODB_URI
 - Ensure your IP is whitelisted in MongoDB Atlas
@@ -93,6 +107,7 @@ If you get CORS errors, update the backend CORS configuration to include your ex
 - Check build logs in Render dashboard
 - Ensure all dependencies are in package.json
 - Verify Node.js version compatibility
+- Clear Render cache if needed (redeploy)
 
 ## 📊 Testing
 1. Visit your frontend URL
