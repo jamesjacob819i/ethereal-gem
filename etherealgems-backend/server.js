@@ -64,15 +64,13 @@ app.use(cors({
       'http://localhost:5174',
       'http://localhost:5175',
       'https://etherealgems-frontend.onrender.com',
-      'https://ethereal-gem-do1f.vercel.app',
-      'https://ethereal-gem-do1f-1rgm924bw-james-projects-8ea40965.vercel.app',
-      'https://ethereal-gem-do1f-y73mcpt9r-james-projects-8ea40965.vercel.app',
     ];
     
-    // Check if origin matches allowed origins, Render URLs, or Vercel preview URLs
+    // Check if origin matches allowed origins, Render URLs, or Vercel URLs
     if (allowedOrigins.includes(origin) || 
         (origin && origin.includes('etherealgems') && origin.includes('onrender.com')) ||
-        (origin && origin.includes('ethereal-gem') && origin.includes('vercel.app'))) {
+        (origin && origin.includes('ethereal-gem') && origin.includes('vercel.app')) ||
+        (origin && origin.includes('etherealgems') && origin.includes('vercel.app'))) {
       return callback(null, true);
     }
     
