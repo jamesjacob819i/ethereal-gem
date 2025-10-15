@@ -58,8 +58,14 @@ Your frontend will be available at:
 
 ### Option 1: No Configuration (Recommended)
 Vercel auto-detects Next.js projects and uses optimal settings.
+**No vercel.json file needed!** Vercel will automatically:
+- Detect Next.js framework
+- Install dependencies
+- Run build command
+- Configure environment variables in dashboard
 
-### Option 2: Custom vercel.json (if needed)
+### Option 2: Custom vercel.json (Optional)
+Only use if you need custom configuration:
 ```json
 {
   "env": {
@@ -69,6 +75,8 @@ Vercel auto-detects Next.js projects and uses optimal settings.
   }
 }
 ```
+
+**Recommendation: Skip vercel.json and use Vercel dashboard for environment variables.**
 
 ## 🛠️ Troubleshooting
 
