@@ -81,18 +81,23 @@ If you get CORS errors, update the backend CORS configuration to include your ex
 ## 🛠️ Troubleshooting
 
 ### TypeScript Build Issues
-If you get "TypeScript packages not installed" error:
-1. **Ensure package.json has TypeScript dependencies:**
+**FIXED in latest commit!** If you still get TypeScript errors:
+
+1. **TypeScript dependencies are now in main dependencies:**
    ```json
-   "devDependencies": {
-     "typescript": "^5.0.0",
-     "@types/node": "^20.0.0",
-     "@types/react": "^18.2.0",
-     "@types/react-dom": "^18.2.0"
+   "dependencies": {
+     "typescript": "^5.3.3",
+     "@types/node": "^20.10.0",
+     "@types/react": "^18.2.45",
+     "@types/react-dom": "^18.2.18"
    }
    ```
-2. **Commit and push changes to GitHub**
-3. **Trigger manual redeploy in Render**
+
+2. **Process.env issues resolved** with proper environment typing
+
+3. **Build script simplified** - no more duplicate npm install
+
+4. **Manual redeploy** - Go to Render and click "Manual Deploy"
 
 ### Database Issues
 - If MongoDB connection fails, check the MONGODB_URI
