@@ -19,7 +19,15 @@ interface AuthStore {
   logout: () => void
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://etherealgems-backend.onrender.com'
+// Environment variable with fallback
+const getApiUrl = () => {
+  if (typeof window !== 'undefined') {
+    return (window as any).__NEXT_DATA__?.env?.NEXT_PUBLIC_API_URL || 'https://etherealgems-backend.onrender.com'
+  }
+  return 'https://etherealgems-backend.onrender.com'
+}
+
+const API_URL = getApiUrl()
 
 export const useAuthStore = create<AuthStore>()((
   persist(

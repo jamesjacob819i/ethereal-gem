@@ -20,7 +20,15 @@ interface ProductStore {
   getProductById: (id: string) => Product | undefined
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
+// Environment variable with fallback
+const getApiUrl = () => {
+  if (typeof window !== 'undefined') {
+    return (window as any).__NEXT_DATA__?.env?.NEXT_PUBLIC_API_URL || 'http://localhost:5000'
+  }
+  return 'http://localhost:5000'
+}
+
+const API_URL = getApiUrl()
 
 // Sample products for development
 const sampleProducts: Product[] = [
